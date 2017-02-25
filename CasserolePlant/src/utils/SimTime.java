@@ -14,7 +14,7 @@ public class SimTime {
 	/**
 	 * Reset time back to start of simulatino (t = 0)
 	 */
-	public void reset() {
+	public static void reset() {
 		curTime_s = 0;
 		prevTime_s = 0;
 		dt_s = 0;
@@ -26,7 +26,7 @@ public class SimTime {
 	 * Update the simulation time by one step.
 	 * @param dt_s_in delta time from last loop to this loop. Must remain pretty constant, otherwise the math will break.
 	 */
-	public void step(double dt_s_in) {
+	public static void step(double dt_s_in) {
 		dt_s = dt_s_in;
 		prevTime_s = curTime_s;
 		curTime_s += dt_s;
