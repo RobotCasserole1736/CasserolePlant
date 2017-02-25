@@ -23,9 +23,11 @@ public class MotorAndController implements PlantComponent {
 	private double controllerInputVoltage_V = 0;
 	private double motorCmd = 0; //FRC convention - -1 full reverse, 0 stop,1 full fwd.
 	private double shaftSpeed_RPM = 0;	
-	private boolean brakeModeActive;
+	private boolean brakeModeActive = false;
 	
 	//State
+	private double emfVoltage_V;
+	private double appliedVoltage_V;
 	
 			
 	//Outputs
@@ -41,8 +43,42 @@ public class MotorAndController implements PlantComponent {
 
 	@Override
 	public void update() {
-		//Calculate EMF voltage 
+		//Calculate EMF Voltage
+		emfVoltage_V = shaftSpeed_RPM*speedToVemfRatio;
 		
+		//Calculate applied 
+		appliedVoltage_V = controllerInputVoltage_V*motorCmd;
+				
+		//Calculate current draw
+		currentDraw_A = (appliedVoltage_V - emfVoltage_V)/esr_ohm;
+		
+		//Calculate Torque
+		shaftOutputTorque_NM = currentDraw_A*currentToTorqueRatio;
+		
+	}
+
+	public double getShaftOutputTorque_NM() {
+		return shaftOutputTorque_NM;
+	}
+
+	public double getCurrentDraw_A() {
+		return currentDraw_A;
+	}
+
+	public void setControllerInputVoltage_V(double controllerInputVoltage_V) {
+		this.controllerInputVoltage_V = controllerInputVoltage_V;
+	}
+
+	public void setMotorCmd(double motorCmd) {
+		this.motorCmd = motorCmd;
+	}
+
+	public void setShaftSpeed_RPM(double shaftSpeed_RPM) {
+		this.shaftSpeed_RPM = shaftSpeed_RPM;
+	}
+
+	public void setBrakeModeActive(boolean brakeModeActive) {
+		this.brakeModeActive = brakeModeActive;
 	}
 
 }

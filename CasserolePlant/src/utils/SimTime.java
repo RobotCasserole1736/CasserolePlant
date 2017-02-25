@@ -7,9 +7,9 @@ package utils;
  */
 
 public class SimTime {
-	private static double curTime_s;
-	private static double prevTime_s;
-	private static double dt_s;
+	public static double curTime_s;
+	public static double prevTime_s;
+	public static double dt_s;
 
 	/**
 	 * Reset time back to start of simulatino (t = 0)
