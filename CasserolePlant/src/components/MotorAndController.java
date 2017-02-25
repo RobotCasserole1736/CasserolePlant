@@ -49,11 +49,14 @@ public class MotorAndController implements PlantComponent {
 		//Calculate applied 
 		appliedVoltage_V = controllerInputVoltage_V*motorCmd;
 				
-		//Calculate current draw
-		currentDraw_A = (appliedVoltage_V - emfVoltage_V)/esr_ohm;
-		
-		//Calculate Torque
-		shaftOutputTorque_NM = currentDraw_A*currentToTorqueRatio;
+		//Calculate current draw & Torque accounting for brake mode
+		if(brakeModeActive == false & motorCmd == 0.0){
+			currentDraw_A = 0;
+			shaftOutputTorque_NM = 0;
+		} else {
+			currentDraw_A = (appliedVoltage_V - emfVoltage_V)/esr_ohm;
+			shaftOutputTorque_NM = currentDraw_A*currentToTorqueRatio;
+		}
 		
 	}
 

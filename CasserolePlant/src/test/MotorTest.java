@@ -86,7 +86,7 @@ public class MotorTest {
 	//Main entry point - the magic starts here!
 	public static void main(String[] args) {
 		motorUnderTest = new MotorAndController();
-		simpleDyno = new RotatingMassWithFriction(5.0,0.1);
+		simpleDyno = new RotatingMassWithFriction(4.0,0.1);
 		
 		simInit();
 		
