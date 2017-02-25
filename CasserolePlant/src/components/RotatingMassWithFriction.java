@@ -7,7 +7,7 @@ import utils.SimpleIntegral;
 public class RotatingMassWithFriction implements PlantComponent {
 	
 	//Constants
-	public final double BEARING_FRICTIONAL_COEF_NperRADpS = 0.01;
+	public final double BEARING_FRICTIONAL_COEF_NperRADpS = 0.00001;
 	
 	//Derived constants
 	public final double radius_m;
