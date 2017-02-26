@@ -9,4 +9,7 @@ public class ConversionConstants {
 	
 	public static double RPM_TO_RADpSEC = Math.PI/30.0;
 	public static double RADpSEC_TO_RPM = 1.0/RPM_TO_RADpSEC;
+	
+	public static double HOURS_TO_SEC  = 3600.0;
+	public static double SEC_TO_HOURS  = 1.0/HOURS_TO_SEC;
 }
